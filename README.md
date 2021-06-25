@@ -1,0 +1,1 @@
+Bootstrapped following [react-native environment setup guide](http://reactnative.dev/docs/environment-setup).

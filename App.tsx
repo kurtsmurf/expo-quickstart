@@ -12,8 +12,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* <StatusBar style="auto" /> */}
-      <Text>{count}</Text>
-      <Button title="increment" onPress={ increment }>Increment Count</Button>
+      <Text >{count}</Text>
+      <Button  title="increment" onPress={ increment }>Increment Count</Button>
       <Button title="decrement" onPress={ decrement }>Decrement Count</Button>
       <Button title="reset" onPress={ reset }>Reset Count</Button>
     </View>
