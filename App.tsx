@@ -1,89 +1,62 @@
 import React, { useState } from "react";
-import {
-  Button,
-  NativeSyntheticEvent,
-  NativeTouchEvent,
-  Text,
-  View,
-} from "react-native";
+import { Button, Text, View } from "react-native";
 
-export default function App() {
+export default () => {
   const [count, setCount] = useState(0);
 
   const increment = () => setCount(count + 1);
   const decrement = () => setCount(count - 1);
   const reset = () => setCount(0);
 
-  return (
+  const Counter = () => (
     <View
       style={{
         flex: 1,
         alignItems: "center",
       }}
     >
-      <CounterDisplay count={count} />
-      <CounterButtons
-        increment={increment}
-        decrement={decrement}
-        reset={reset}
-      />
+      <CounterDisplay />
+      <CounterButtons />
     </View>
   );
-}
 
-const CounterButtons: React.FC<{
-  increment: () => void;
-  decrement: () => void;
-  reset: () => void;
-}> = ({
-  increment,
-  decrement,
-  reset,
-}) => {
-  return (
+  const CounterDisplay = () => (
     <View
       style={{
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-around",
-        width: "100%",
+        flex: 2,
+        justifyContent: "center",
       }}
     >
-      <CounterButton title="decrement" onPress={decrement} />
-      <CounterButton title="reset" onPress={reset} />
-      <CounterButton title="increment" onPress={increment} />
+      <Text style={{ fontSize: 200 }}>
+        {count}
+      </Text>
     </View>
   );
+
+  const CounterButtons = () => {
+    const Spacer = () => <View style={{ width: 10, height: 10 }}></View>;
+
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+        }}
+      >
+        <View>
+          <Button title="decrement" onPress={decrement} />
+        </View>
+        <Spacer />
+        <View>
+          <Button title="reset" onPress={reset} />
+        </View>
+        <Spacer />
+        <View>
+          <Button title="increment" onPress={increment} />
+        </View>
+      </View>
+    );
+  };
+
+  return <Counter />;
 };
-
-const CounterDisplay: React.FC<{
-  count: number;
-}> = ({ count }) => (
-  <View
-    style={{
-      flex: 2,
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    <Text
-      style={{
-        fontSize: 200,
-        textShadowColor: "#AAA",
-        textShadowRadius: 4,
-        textShadowOffset: { width: 1, height: 2 },
-      }}
-    >
-      {count}
-    </Text>
-  </View>
-);
-
-const CounterButton: React.FC<{
-  onPress: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
-  title: string;
-}> = ({ onPress, title }) => (
-  <View style={{ flex: 1, maxWidth: "30%" }}>
-    <Button title={title} onPress={onPress} />
-  </View>
-);
