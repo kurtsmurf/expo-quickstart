@@ -7,19 +7,7 @@ import {
   View,
 } from "react-native";
 
-export default () => {
-  return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
-      <Counter />
-    </View>
-  );
-};
-
-const Counter = () => {
+export default function App() {
   const [count, setCount] = useState(0);
 
   const increment = () => setCount(count + 1);
@@ -41,7 +29,7 @@ const Counter = () => {
       />
     </View>
   );
-};
+}
 
 const CounterButtons: React.FC<{
   increment: () => void;
@@ -58,7 +46,7 @@ const CounterButtons: React.FC<{
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-around",
-        width: "80%",
+        width: "100%",
       }}
     >
       <CounterButton title="decrement" onPress={decrement} />
@@ -81,9 +69,9 @@ const CounterDisplay: React.FC<{
     <Text
       style={{
         fontSize: 200,
-        textShadowColor: "#999",
+        textShadowColor: "#AAA",
         textShadowRadius: 4,
-        textShadowOffset: { width: 2, height: 2 },
+        textShadowOffset: { width: 1, height: 2 },
       }}
     >
       {count}
